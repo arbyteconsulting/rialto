@@ -83,7 +83,7 @@ Rialto translates this into **FileMaker script XML**:
 
 The resulting XML can then be **copied and pasted directly into the FileMaker Pro Script Workspace.**
 
-<img src="images/pasted_into_filemaker.png" width="1089">
+<img src="images/pasted_into_filemaker.png" width="800">
 
 No manual conversion is required.
 
