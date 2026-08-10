@@ -304,9 +304,7 @@ The roadmap will evolve based on feedback from FileMaker developers using Rialto
 
 The name has a couple of connections.
 
-**Rialto is a village in Dublin, Ireland**, where the author lives.
-
-It is also the name of the famous **Rialto Bridge in Venice**, which connects the two sides of the Grand Canal.
+**Rialto is a village in Dublin, Ireland**, close to where the author lives. It got its name from a newly built bridge (in 1795). Like many civic constructions in Dublin it was given a nickname and locals felt the new bridge looked like the Rialto Bridge in Venice - the name stuck and grew to encompass the area around the bridge.
 
 The name seemed fitting for an application whose purpose is to provide a bridge between two worlds:
 
