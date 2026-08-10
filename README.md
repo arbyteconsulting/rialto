@@ -2,7 +2,7 @@
 
 ### The bridge between AI and FileMaker.
 
-Rialto is a native macOS application that converts **AI-generated plain-text FileMaker scripts into scripts that can be pasted directly into the FileMaker Pro Script Workspace.**
+Rialto is a native macOS application that converts **AI-generated plain-text FileMaker scripts into FileMaker script XML that can be pasted directly into the FileMaker Pro Script Workspace.**
 
 AI assistants such as ChatGPT, Claude and Gemini are very good at understanding what a FileMaker script should do and describing the required steps.
 
@@ -32,7 +32,7 @@ The workflow is deliberately simple:
 │     Translate       │
 └──────────┬──────────┘
            │
-           │ FileMaker script
+           │ FileMaker XML
            ▼
 ┌─────────────────────┐
 │     FileMaker Pro   │
@@ -54,54 +54,34 @@ Large Language Models are excellent at generating structured plain text, but Fil
 For example, an AI can naturally produce:
 
 ```text
-Set Variable
-
-Name: $count
-Value: 10
-
+Set Error Capture [ On ]
+Set Variable [ $counter ; Value: 0 ]
 Loop
-
-If
-
-Condition: $count > 0
-
-Show Custom Dialog
-
-Title: Countdown
-Message: $count
-
-Set Variable
-
-Name: $count
-Value: $count - 1
-
-End If
-
+    Set Variable [ $counter ; Value: $counter + 1 ]
+    If [ $counter > 10 ]
+        Exit Loop If [ True ]
+    End If
 End Loop
+Commit Records/Requests [ No dialog ]
 ```
 
-Rialto translates this into a FileMaker script:
+Rialto translates this into **FileMaker script XML**:
 
-```text
-Set Variable [ $count ; Value: 10 ]
-
-Loop
-
-If [ $count > 0 ]
-
-Show Custom Dialog [
-    Title: "Countdown";
-    Message: $count
-]
-
-Set Variable [ $count ; Value: $count - 1 ]
-
-End If
-
-End Loop
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<fmxmlsnippet type="FMObjectList"><Step enable="True" id="86" name="Set Error Capture"><Set state="True"/></Step>
+<Step enable="True" id="141" name="Set Variable"><Value><Calculation><![CDATA[0]]></Calculation></Value><Repetition><Calculation><![CDATA[1]]></Calculation></Repetition><Name>$counter</Name></Step>
+<Step enable="True" id="71" name="Loop"><Restore state="False"/><FlushType value="Always"/></Step>
+<Step enable="True" id="141" name="Set Variable"><Value><Calculation><![CDATA[$counter + 1]]></Calculation></Value><Repetition><Calculation><![CDATA[1]]></Calculation></Repetition><Name>$counter</Name></Step>
+<Step enable="True" id="68" name="If"><Restore state="False"/><Calculation><![CDATA[$counter > 10]]></Calculation></Step>
+<Step enable="True" id="72" name="Exit Loop If"><Calculation><![CDATA[True]]></Calculation></Step>
+<Step enable="True" id="70" name="End If"/>
+<Step enable="True" id="73" name="End Loop"/>
+<Step enable="True" id="75" name="Commit Records/Requests"><NoInteract state="True"/></Step>
+</fmxmlsnippet>
 ```
 
-The resulting script can then be **copied and pasted directly into the FileMaker Pro Script Workspace.**
+The resulting XML can then be **copied and pasted directly into the FileMaker Pro Script Workspace.**
 
 No manual conversion is required.
 
@@ -121,11 +101,11 @@ Instead, it lets the AI do what it is good at:
 
 And lets Rialto do what it is good at:
 
-> **Turn that description into FileMaker script syntax.**
+> **Turn that description into FileMaker script XML.**
 
 This separation makes the workflow simple and flexible.
 
-You can use Rialto with whichever AI you prefer.
+You can use Rialto with whichever AI you prefer:
 
 * ChatGPT
 * Claude
@@ -155,7 +135,7 @@ Rialto analyses the script steps and parameters.
 
 ### 4. Translate
 
-Rialto generates the corresponding FileMaker script.
+Rialto generates the corresponding FileMaker script XML.
 
 ### 5. Copy
 
@@ -180,7 +160,7 @@ It is not:
 * An AI API
 * A FileMaker plugin
 
-It is a **bridge** between AI-generated plain text and FileMaker scripting.
+It is a **bridge between AI-generated plain text and FileMaker scripting.**
 
 ---
 
@@ -188,10 +168,10 @@ It is a **bridge** between AI-generated plain text and FileMaker scripting.
 
 * Native macOS application
 * Built with Swift and SwiftUI
-* Converts structured plain text into FileMaker scripts
+* Converts structured plain text into FileMaker script XML
 * Supports a large range of FileMaker script steps
 * Handles script parameters and nested structures
-* Produces FileMaker-compatible script syntax
+* Produces FileMaker-compatible script XML
 * Runs locally on your Mac
 * No AI API key required
 * Works with any AI capable of producing the required plain-text format
@@ -324,7 +304,7 @@ The roadmap will evolve based on feedback from FileMaker developers using Rialto
 
 The name has a couple of connections.
 
-**Rialto is a village in Dublin, Ireland**, beside where the author lives.
+**Rialto is a village in Dublin, Ireland**, where the author lives.
 
 It is also the name of the famous **Rialto Bridge in Venice**, which connects the two sides of the Grand Canal.
 
@@ -332,10 +312,11 @@ The name seemed fitting for an application whose purpose is to provide a bridge 
 
 **AI ↔ FileMaker**
 
-AI generates the plain-text representation of a FileMaker script. Rialto translates it into a FileMaker script that can be pasted directly into the FileMaker Pro Script Workspace.
+AI generates the plain-text representation of a FileMaker script. Rialto translates it into FileMaker script XML that can be pasted directly into the FileMaker Pro Script Workspace.
 
 **AI writes the script. Rialto makes it FileMaker.**
 
+---
 
 ## Licence
 
