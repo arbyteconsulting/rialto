@@ -231,7 +231,23 @@ Rialto.xcodeproj
 
 in Xcode and build the application.
 
----
+### First launch
+
+Rialto is not currently notarized by Apple (this requires a paid Apple Developer Program membership). As a result, macOS Gatekeeper may warn that the app is "from an unidentified developer" or "cannot be verified" the first time you open it.
+
+To run it anyway:
+
+1. Locate **Rialto.app** in Finder (don't double-click it yet).
+2. Right-click (or Control-click) the app and choose **Open**.
+3. In the dialog that appears, click **Open** to confirm.
+
+You only need to do this once — after the first launch, macOS will open the app normally.
+
+If you still see a warning, you can also remove the quarantine flag manually in Terminal:
+
+```bash
+xattr -cr /Applications/Rialto.app
+```
 
 ## Screenshots
 
