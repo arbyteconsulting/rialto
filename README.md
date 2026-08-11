@@ -284,22 +284,17 @@ This makes it much easier to reproduce and fix translation issues.
 
 ---
 
-## Roadmap
+## Known Limitations
 
-Possible future development includes:
+Rialto's translation engine is under active development. A few specific gaps worth knowing about:
 
-* Additional FileMaker script-step support
-* Improved parameter handling
-* Better validation and error reporting
-* Syntax highlighting
-* Improved editing and navigation
-* FileMaker version awareness
-* Expanded automated testing
-* Improved clipboard integration
-* Additional AI workflow integrations
+- **Steps with two calculation fields may only recover one.** `Set Selection`, for example, takes both a Start Position and an End Position calculation — the current XML parser tracks a single active `<Calculation>` block per step, so dual-calculation steps like this can lose one side on translation. Fixing this needs the parser to support multiple concurrent calculation contexts per step.
 
-The roadmap will evolve based on feedback from FileMaker developers using Rialto.
+- **Trigger Claris Connect Flow is intentionally unsupported.** Its real FileMaker XML embeds data — auth tokens, curl flags — that can't be reconstructed from an AI-generated plain-text description. This isn't a bug to be fixed so much as a boundary of what plain-text-to-XML translation can safely do.
 
+- **Steps with multiple or nested sub-parameters are the highest-risk area for silent mis-translation.** Field- and script-reference resolution has been fixed for steps like `Set Field`, `Go to Field`, `Install OnTimer Script`, and the NFC/notification/region-monitor family, but the step library is large. If a step has a Set Selection-like shape (more than one calculation or sub-clause), treat its output with extra scrutiny until it's been explicitly verified.
+
+If you hit a translation issue, especially in these areas, please report it — see Contributing above.
 ---
 
 ## Why "Rialto"?
