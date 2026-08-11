@@ -215,7 +215,7 @@ Supported macOS and FileMaker versions will be documented as the project develop
 
 ## Installation
 
-Download the latest release from [GitHub Releases](github.com/arbyteconsulting/rialto/releases/latest)
+Download the [latest release](https://github.com/arbyteconsulting/rialto/releases/latest) from the GitHub Releases page.
 
 Alternatively, clone the repository and build Rialto using Xcode.
 
