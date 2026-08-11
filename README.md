@@ -220,7 +220,7 @@ Download the latest release from the GitHub **Releases** page.
 Alternatively, clone the repository and build Rialto using Xcode.
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/rialto.git
+git clone https://github.com/r2bw/rialto.git
 ```
 
 Open:
