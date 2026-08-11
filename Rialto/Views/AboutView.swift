@@ -28,7 +28,7 @@ struct AboutView: View {
             Text("Version \(version) (\(build))")
                 .foregroundStyle(.secondary)
 
-            Text("© 2026 Richard Whyte")
+            Text("Copyright (c) 2026 Arbyte Consulting")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
