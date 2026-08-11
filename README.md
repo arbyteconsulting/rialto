@@ -293,7 +293,6 @@ Rialto's translation engine is under active development. A few specific gaps wor
 - **Trigger Claris Connect Flow is intentionally unsupported.** Its real FileMaker XML embeds data — auth tokens, curl flags — that can't be reconstructed from an AI-generated plain-text description. This isn't a bug to be fixed so much as a boundary of what plain-text-to-XML translation can safely do.
 
 - **Steps with multiple or nested sub-parameters are the highest-risk area for silent mis-translation.** Field- and script-reference resolution has been fixed for steps like `Set Field`, `Go to Field`, `Install OnTimer Script`, and the NFC/notification/region-monitor family, but the step library is large. If a step has a Set Selection-like shape (more than one calculation or sub-clause), treat its output with extra scrutiny until it's been explicitly verified.
-
 If you hit a translation issue, especially in these areas, please report it — see Contributing above.
 ---
 
